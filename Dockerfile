@@ -1,7 +1,7 @@
 FROM rust:latest as builder
 
 # Set the working directory
-WORKDIR /usr/src/longest-subset
+WORKDIR /usr/src/subset
 
 COPY . .
 
@@ -11,10 +11,10 @@ RUN cargo build --release
 FROM ubuntu:22.04
 
 # Set the working directory
-WORKDIR /usr/src/longest-subset
+WORKDIR /usr/src/subset
 
 # Copy the built binary from the builder stage
-COPY --from=builder /usr/src/longest-subset/target/release/longest-subset .
+COPY --from=builder /usr/src/subset/target/release/subset .
 
 # Run the executable
-CMD ["./longest-subset"]
+CMD ["./subset"]
